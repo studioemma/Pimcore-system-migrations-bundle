@@ -53,6 +53,8 @@ use StudioEmma\SystemMigrationsBundle\SystemUpdate;
 
 class SystemUpdate$version extends SystemUpdate
 {
+    const BUILDNR = $key;
+
     public function up()
     {
 $upcontent
