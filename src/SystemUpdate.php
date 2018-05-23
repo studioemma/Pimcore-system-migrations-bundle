@@ -48,6 +48,10 @@ abstract class SystemUpdate
     {
         $record = $this->getRevisionRecord();
         if (false === $record) {
+            $highest = $this->getHighestRecordBuildNr();
+            if ($highest >= self::BUILDNR) {
+                return false;
+            }
             return true;
         }
 
@@ -72,6 +76,10 @@ abstract class SystemUpdate
     {
         $record = $this->getRevisionRecord();
         if (false === $record) {
+            $lowest = $this->getLowestRecordBuildNr();
+            if ($lowest < self::BUILDNR) {
+                return true;
+            }
             return false;
         }
 
@@ -112,6 +120,22 @@ abstract class SystemUpdate
             'plugin_se_system_migrations',
             $data
         );
+    }
+
+    private function getHighestRecordBuildNr()
+    {
+        $sql = 'SELECT MAX(`pimcore_build`) FROM `plugin_se_system_migrations`';
+        $record = $this->db->fetchCol($sql);
+        $highest = (int) current($record);
+        return $highest;
+    }
+
+    private function getLowestRecordBuildNr()
+    {
+        $sql = 'SELECT MIN(`pimcore_build`) FROM `plugin_se_system_migrations`';
+        $record = $this->db->fetchCol($sql);
+        $lowest = (int) current($record);
+        return $lowest;
     }
 
     abstract protected function up();
