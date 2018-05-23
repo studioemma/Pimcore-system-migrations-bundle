@@ -62,6 +62,7 @@ $upcontent
 
     public function down()
     {
+        // down not implemented
     }
 }
 
