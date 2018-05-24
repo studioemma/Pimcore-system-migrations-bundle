@@ -49,7 +49,7 @@ abstract class SystemUpdate
         $record = $this->getRevisionRecord();
         if (false === $record) {
             $highest = $this->getHighestRecordBuildNr();
-            if ($highest >= self::BUILDNR) {
+            if ($highest >= static::BUILDNR) {
                 return false;
             }
             return true;
@@ -77,7 +77,7 @@ abstract class SystemUpdate
         $record = $this->getRevisionRecord();
         if (false === $record) {
             $lowest = $this->getLowestRecordBuildNr();
-            if ($lowest < self::BUILDNR) {
+            if ($lowest < static::BUILDNR) {
                 return true;
             }
             return false;
