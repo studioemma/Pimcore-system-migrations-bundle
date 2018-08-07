@@ -16,6 +16,14 @@ are not reproducable. The code will be updated due to a deploy on your other
 environment, but the database migrations will not be there, potentially causing
 all sorts of issues and/or unexpected behaviour.
 
+## Pimcore 5.4.0
+
+As of pimcore 5.4.0 you will have to run the CoreBundle migrations to get this
+functionality.
+
+When you are updating from a lower version than 5.4.0, first update to the
+latest 5.3.x and then remove this bundle when updating to 5.4.0.
+
 ## Installation
 
 ``` sh
